@@ -18,8 +18,13 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> save(User user){
+    public ResponseEntity<ReadUserDto> save(@RequestBody CreateUserDto user){
         return ResponseEntity.ok(userService.save(user));
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<ReadUserDto> findById(@PathVariable long id){
+        return ResponseEntity.ok(userService.findById(id));
     }
 
 }
