@@ -2,11 +2,12 @@ package joaopepe10.com.github.eleicao.service.base;
 
 import joaopepe10.com.github.eleicao.dto.BaseDto;
 import joaopepe10.com.github.eleicao.exception.NotImplementedException;
+import joaopepe10.com.github.eleicao.models.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public abstract class ServiceBaseImp <TEntity> implements ServiceBase<TEntity>{
+public abstract class ServiceBaseImp<TEntity extends BaseEntity> implements IServiceBase<TEntity> {
     private final JpaRepository<TEntity, Long> repository;
 
     public ServiceBaseImp(JpaRepository<TEntity, Long> repository) {
