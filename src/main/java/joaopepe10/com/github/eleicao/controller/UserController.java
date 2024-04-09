@@ -1,20 +1,20 @@
 package joaopepe10.com.github.eleicao.controller;
 
-import joaopepe10.com.github.eleicao.models.User;
-import joaopepe10.com.github.eleicao.service.UserService;
+import joaopepe10.com.github.eleicao.dto.CreateUserDto;
+import joaopepe10.com.github.eleicao.dto.ReadUserDto;
+import joaopepe10.com.github.eleicao.service.UserServiceImpl;
+import joaopepe10.com.github.eleicao.service.interfaces.IUserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user")
 public class UserController {
 
-    private final UserService userService;
+    private final IUserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserServiceImpl userServiceImpl) {
+        this.userService = userServiceImpl;
     }
 
     @PostMapping
