@@ -1,5 +1,6 @@
 package joaopepe10.com.github.eleicao.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -18,6 +19,7 @@ public class User extends BaseEntity{
     private String name;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Candidate> candidates;
 
 }
