@@ -14,6 +14,9 @@
 	<name>eleicao</name>
 	<description>Projeto para fins educacionais, praticando conhecimento adquirido</description>
 	<properties>
+		<mockito.version>5.10.0</mockito.version>
+		<mapper.version>3.0.0</mapper.version>
+		<hamcrest.version>2.2</hamcrest.version>
 		<java.version>17</java.version>
 	</properties>
 
@@ -21,7 +24,7 @@
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
-			<version>3.0.0</version>
+			<version>${mapper.version}</version>
 		</dependency>
 
 		<dependency>
@@ -53,6 +56,26 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest</artifactId>
+			<version>${hamcrest.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
