@@ -1,6 +1,7 @@
 package joaopepe10.com.github.eleicao.service.base;
 
 import joaopepe10.com.github.eleicao.dto.BaseDto;
+import joaopepe10.com.github.eleicao.exception.IdNotFoundException;
 import joaopepe10.com.github.eleicao.exception.NotImplementedException;
 import joaopepe10.com.github.eleicao.models.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,7 +22,9 @@ public abstract class ServiceBaseImp<TEntity extends BaseEntity> implements ISer
 
     @Override
     public Optional<TEntity> findById(Long id) {
-        return repository.findById(id);
+        return Optional.ofNullable(repository
+                .findById(id)
+                .orElseThrow(() -> new IdNotFoundException("Invalid ID: " + id)));
     }
 
     @Override
