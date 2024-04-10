@@ -6,6 +6,6 @@ public class NotImplementedException extends RuntimeException{
     }
 
     public NotImplementedException() {
-        super("Nao foi implementado o metodo");
+        super("Método não foi implementado!");
     }
 }
