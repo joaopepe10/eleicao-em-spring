@@ -6,8 +6,6 @@ import joaopepe10.com.github.eleicao.exception.NotImplementedException;
 import joaopepe10.com.github.eleicao.models.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
 public abstract class ServiceBaseImp<TEntity extends BaseEntity> implements IServiceBase<TEntity> {
     private final JpaRepository<TEntity, Long> repository;
 
@@ -15,25 +13,24 @@ public abstract class ServiceBaseImp<TEntity extends BaseEntity> implements ISer
         this.repository = repository;
     }
 
-    @Override
     public TEntity save(TEntity entity) {
+        if (entity == null){
+            throw new RuntimeException("Entity cannot be null!");
+        }
         return repository.save(entity);
     }
 
-    @Override
-    public Optional<TEntity> findById(Long id) {
-        return Optional.ofNullable(repository
-                .findById(id)
-                .orElseThrow(() -> new IdNotFoundException("Invalid ID: " + id)));
-    }
-
-    @Override
     public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    @Override
     public void update(Long id, BaseDto dto) {
         throw new NotImplementedException();
+    }
+
+    public TEntity findById(Long id){
+        return repository
+                .findById(id)
+                .orElseThrow(() -> new IdNotFoundException("Invalid ID: " + id));
     }
 }
