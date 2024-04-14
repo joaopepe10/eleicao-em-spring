@@ -1,13 +1,14 @@
 package joaopepe10.com.github.eleicao.controller;
 
-import joaopepe10.com.github.eleicao.dto.candidate.CreateCandidateDto;
 import joaopepe10.com.github.eleicao.dto.candidate.ReadCandidateDto;
+import joaopepe10.com.github.eleicao.dto.candidate.UpdateSpeechCandidateDto;
+import joaopepe10.com.github.eleicao.exception.BadRequestException;
+import joaopepe10.com.github.eleicao.models.Candidate;
 import joaopepe10.com.github.eleicao.service.interfaces.ICandidateService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("candidate")
@@ -17,11 +18,18 @@ public class CandidateController {
         this.candidateService = candidateService;
     }
 
-    @PostMapping
-    public ResponseEntity<ReadCandidateDto> save(@RequestBody CreateCandidateDto dto){
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Candidate> findAll(){
+        return candidateService.findAll();
+    }
+
+    @PutMapping("{id}/update-speech")
+    @ResponseStatus(HttpStatus.OK)
+    public ReadCandidateDto updateSpeech(@PathVariable Long id, @RequestBody UpdateSpeechCandidateDto dto){
         if (dto == null){
-            throw new RuntimeException("Error");
+            throw new BadRequestException("Dados insuficientes para alterar os dados.");
         }
-        return  ResponseEntity.ok(candidateService.save(dto));
+        return candidateService.updateSpeech(id, dto);
     }
 }
