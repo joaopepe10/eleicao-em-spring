@@ -6,7 +6,8 @@ import java.util.Optional;
 
 public interface IServiceBase<TEntity>{
     TEntity save(TEntity entity);
-    Optional<TEntity> findById(Long id);
+    TEntity findById(Long id);
     void delete(Long id);
     void update(Long id, BaseDto dto);
+
 }
