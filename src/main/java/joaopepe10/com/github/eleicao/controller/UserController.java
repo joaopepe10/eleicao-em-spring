@@ -1,5 +1,6 @@
 package joaopepe10.com.github.eleicao.controller;
 
+import jakarta.validation.Valid;
 import joaopepe10.com.github.eleicao.dto.user.CreateUserDto;
 import joaopepe10.com.github.eleicao.dto.user.ReadUserDto;
 import joaopepe10.com.github.eleicao.service.UserServiceImpl;
@@ -18,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<ReadUserDto> save(@RequestBody CreateUserDto user){
+    public ResponseEntity<ReadUserDto> save(@RequestBody @Valid CreateUserDto user){
         return ResponseEntity.ok(userService.save(user));
     }
 
