@@ -47,7 +47,9 @@ public class ElectionServiceImpl extends ServiceBaseImp<Election> implements IEl
         Election election = findById(electionId);
         Long idCandidate = candidateService.save(dto).getId();
         Candidate candidate = candidateService.findById(idCandidate);
+        candidate.setElection(election);
         election.getCandidates().add(candidate);
+        save(election);
         return modelMapper.map(election, ReadElectionDto.class);
     }
 }
