@@ -27,7 +27,7 @@ public class Election extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private StatusEnum status = StatusEnum.Registered;
 
-    @OneToMany
+    @OneToMany(mappedBy = "election")
     private List<Candidate> candidates;
 }
 

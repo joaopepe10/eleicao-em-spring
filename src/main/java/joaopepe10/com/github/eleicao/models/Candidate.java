@@ -2,6 +2,7 @@ package joaopepe10.com.github.eleicao.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,6 @@ public class Candidate extends BaseEntity{
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "electionId")
     private Election election;
-
 }
